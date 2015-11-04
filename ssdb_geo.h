@@ -68,6 +68,7 @@ bool ssdb_geo_neighbours(
 		int member_key_len,
 		double radius_meters,
 		long return_limit,
+		long offset_limit,
 		long zscan_limit,
 		INTERNAL_FUNCTION_PARAMETERS);
 
