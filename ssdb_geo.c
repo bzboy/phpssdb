@@ -368,6 +368,7 @@ bool ssdb_geo_neighbours(
 		int member_key_len,
 		double radius_meters,
 		long return_limit,
+		long offset_limit,
 		long zscan_limit,
 		INTERNAL_FUNCTION_PARAMETERS) {
 	double latlong[2] = {0};
@@ -416,8 +417,9 @@ bool ssdb_geo_neighbours(
 
 	zval *temp;
 	array_init(return_value);
+	offset_limit = offset_limit < 0 ? 0 : offset_limit; 
 	for (i = 0; i < l->num; i++) {
-		if (i < return_limit) {
+		if (i >= offset_limit && i < return_limit) {
 			MAKE_STD_ZVAL(temp);
 			array_init_size(temp, 3);
 			add_assoc_double_ex(temp, ZEND_STRS("latitude"),  p_l[i].latitude);
