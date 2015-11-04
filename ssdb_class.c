@@ -3416,7 +3416,7 @@ PHP_METHOD(SSDB, geo_neighbour) {
 	double radius_meters = 1000;
 	long return_limit = 0, offset_limit = 0, zscan_limit = 2000;
 
-	if (zend_parse_method_parameters(ZEND_NUM_ARGS() TSRMLS_CC, getThis(), "Oss|dl",
+	if (zend_parse_method_parameters(ZEND_NUM_ARGS() TSRMLS_CC, getThis(), "Oss|dll",
 			&object, ssdb_ce,
 			&key, &key_len,
 			&member_key, &member_key_len,
