@@ -416,16 +416,18 @@ bool ssdb_geo_neighbours(
 	qsort(p_l, l->num, sizeof(SSDBGeoPoint), ssdb_geo_point_sort_asc);
 
 	zval *temp;
+	int return_num = 0;
 	array_init(return_value);
 	offset_limit = offset_limit < 0 ? 0 : offset_limit; 
 	for (i = 0; i < l->num; i++) {
-		if (i >= offset_limit && i < return_limit) {
+		if (i >= offset_limit && return_num < return_limit) {
 			MAKE_STD_ZVAL(temp);
 			array_init_size(temp, 3);
 			add_assoc_double_ex(temp, ZEND_STRS("latitude"),  p_l[i].latitude);
 			add_assoc_double_ex(temp, ZEND_STRS("longitude"), p_l[i].longitude);
 			add_assoc_double_ex(temp, ZEND_STRS("distance"),  p_l[i].dist);
 			add_assoc_zval(return_value, p_l[i].member, temp);
+			return_num++;
 		}
 		efree(p_l[i].member);
 	}
