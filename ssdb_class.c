@@ -3422,7 +3422,7 @@ PHP_METHOD(SSDB, geo_neighbour) {
 			&member_key, &member_key_len,
 			&radius_meters,
 			&return_limit,
-			&offset_limit，
+			&offset_limit,
 			&zscan_limit) == FAILURE
 			|| 0 == key_len
 			|| 0 == member_key_len
